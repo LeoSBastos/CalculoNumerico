@@ -27,26 +27,24 @@ def bisseccao(a,b,iteracoes):
     if(iteracoes > 0):
         if(b-a<eps):
             return (random.uniform(a,b))
-        elif(f(a)<0 and f(b)>0):
+        else:
             x = (a+b)/2
             if(f(x) == 0):
-    	        return x
-            if(x < 0):
-                printar(iteracoes,a,b,x)
-                bisseccao(x,b,iteracoes-1)
-            else:
-                printar(iteracoes,a,b,x)
-                bisseccao(a,x,iteracoes-1)
-        elif(f(a)>0 and f(b)<0):
-            x = (a+b)/2
-            if(f(x) == 0):
-    	        return x
-            if(x > 0):
-                printar(iteracoes,a,b,x)
-                bisseccao(x,b,iteracoes-1)
-            else:
-                printar(iteracoes,a,b,x)
-                bisseccao(a,x,iteracoes-1)
+                return x
+            if(f(a)<0 and f(b)>0):
+                if(x < 0):
+                    printar(iteracoes,a,b,x)
+                    bisseccao(x,b,iteracoes-1)
+                else:
+                    printar(iteracoes,a,b,x)
+                    bisseccao(a,x,iteracoes-1)
+            elif(f(a)>0 and f(b)<0):
+                if(x > 0):
+                    printar(iteracoes,a,b,x)
+                    bisseccao(x,b,iteracoes-1)
+                else:
+                    printar(iteracoes,a,b,x)
+                    bisseccao(a,x,iteracoes-1)
     else:
         return None
                     
