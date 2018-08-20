@@ -18,20 +18,21 @@ import matplotlib.pyplot as plt
 eps = np.finfo(float).eps
 vala = []
 valb = []
-xo = []
+valx = []
 
 def f(x):
-    return np.exp(x) - x -2
+    return x*x-1
 
 def printar(n,a,b,x):
-    print("iteracao:",n,"a: ",a,"b: " ,b,"x :",x)
+    list = [n,a,b,x,f(a),f(b),f(x)]
+    print("Iteracao {}: \nValor de a: {} \nValor de b: {} \nValor de x: {} \nValor de função de a:{} \nValor de função de b: {} \nValor de função de x: {}".format(*list))
     vala.append(a)
     valb.append(b)
-    xo.append(x)
+    valx.append(x)
 
 
-def bisseccao(a,b,iteracoes):
-    if(iteracoes > 0):
+def bisseccao(a,b,eps,it,iteracoes):
+    if(it<iteracoes):
         if(b-a<eps):
             return (random.uniform(a,b))
         else:
@@ -39,19 +40,19 @@ def bisseccao(a,b,iteracoes):
             if(f(x) == 0):
                 return x
             if(f(a)<0 and f(b)>0):
-                if(x < 0):
-                    printar(iteracoes,a,b,x)
-                    bisseccao(x,b,iteracoes-1)
+                if(f(x) < 0):
+                    printar(it,a,b,x)
+                    bisseccao(x,b,eps,it+1,iteracoes)
                 else:
-                    printar(iteracoes,a,b,x)
-                    bisseccao(a,x,iteracoes-1)
+                    printar(it,a,b,x)
+                    bisseccao(a,x,eps,it+1,iteracoes)
             elif(f(a)>0 and f(b)<0):
-                if(x > 0):
-                    printar(iteracoes,a,b,x)
-                    bisseccao(x,b,iteracoes-1)
+                if(f(x) > 0):
+                    printar(it,a,b,x)
+                    bisseccao(x,b,eps,it+1,iteracoes)
                 else:
-                    printar(iteracoes,a,b,x)
-                    bisseccao(a,x,iteracoes-1)
+                    printar(it,a,b,x)
+                    bisseccao(a,x,eps,it+1,iteracoes)
             else:
                 print("meu amigo, queria dizer não, mas vai ter que usar algo que ainda não aprendi")
     else:
@@ -60,10 +61,8 @@ def bisseccao(a,b,iteracoes):
 
 
 #Exemplo da Tabela 3.1 realizado do livro da UFRGS
-a = float(-2)
-b = float(0)
-bisseccao(a,b,5)
-
-plt.plot(vala,valb,color="#0000ff")
-plt.plot(xo, color="#FF0000")
+a = float(0)
+b = float(3)
+bisseccao(a,b,(10**-6),0,100)
+plt.plot(valx, color="#FF0000")
 plt.show()
