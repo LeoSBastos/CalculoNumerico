@@ -8,6 +8,10 @@ def f(x):
 def pondmed(a,b):
     return ((a*np.absolute(f(a)))+(b*np.absolute(f(b))))/(np.absolute(f(b))+np.absolute(f(a)))
 
+vala = []
+valb = []
+valx = []
+
 def printar(n,a,b,x):
     list = [n,a,b,x,f(a),f(b),f(x)]
     print("Iteracao {}: \nValor de a: {} \nValor de b: {} \nValor de x: {} \nValor de função de a:{} \nValor de função de b: {} \nValor de função de x: {}".format(*list))
