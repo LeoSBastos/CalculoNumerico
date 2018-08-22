@@ -24,7 +24,7 @@ def f(x):
     return x*x-1
 
 def printar(n,a,b,x):
-    list = [n,a,b,x,f(a),f(b),f(x)]
+    list = [n+1,a,b,x,f(a),f(b),f(x)]
     print("Iteracao {}: \nValor de a: {} \nValor de b: {} \nValor de x: {} \nValor de função de a:{} \nValor de função de b: {} \nValor de função de x: {}".format(*list))
     vala.append(a)
     valb.append(b)
@@ -63,7 +63,7 @@ def bisseccao(a,b,eps,it,iteracoes):
 #Exemplo da Tabela 3.1 realizado do livro da UFRGS
 a = float(0)
 b = float(3)
-bi = bisseccao(a,b,(10**-6),0,300)
+bi = bisseccao(a,b,(1e-6),0,300)
 if bi == None:
     print("Passou do limite, bro, fez sol!")
 else:

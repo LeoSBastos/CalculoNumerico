@@ -3,17 +3,17 @@ import random
 import matplotlib.pyplot as plt
 
 def f(x):
-    return (x**2)+2
+    return (x**2)-2
 
-def pondmed(a,b):
-    return ((a*np.absolute(f(b)))+(b*np.absolute(f(a))))/(np.absolute(f(b))+np.absolute(f(a)))
+def pondmed(a0,b0):
+    return ((a0*np.absolute(f(b)))+(b0*np.absolute(f(a))))/(np.absolute(f(b))+np.absolute(f(a)))
 
 vala = []
 valb = []
 valx = []
 
 def printar(n,a,b,x):
-    list = [n,a,b,x,f(a),f(b),f(x)]
+    list = [n+1,a,b,x,f(a),f(b),f(x)]
     print("Iteracao {}: \nValor de a: {} \nValor de b: {} \nValor de x: {} \nValor de função de a:{} \nValor de função de b: {} \nValor de função de x: {}".format(*list))
     vala.append(a)
     valb.append(b)
@@ -52,7 +52,7 @@ def falsaposicao(a,b,eps,it,iteracoes):
 #Exemplo da Tabela 3.1 realizado do livro da UFRGS
 a = float(0)
 b = float(30)
-fp = falsaposicao(a,b,(10**-6),0,1000)
+fp = falsaposicao(a,b,(1e-6),0,990)
 if fp == None:
     print("Passou do limite, bro, fez sol!")
 else:
