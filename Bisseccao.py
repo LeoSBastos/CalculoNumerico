@@ -63,6 +63,10 @@ def bisseccao(a,b,eps,it,iteracoes):
 #Exemplo da Tabela 3.1 realizado do livro da UFRGS
 a = float(0)
 b = float(3)
-bisseccao(a,b,(10**-6),0,100)
+bi = bisseccao(a,b,(10**-6),0,300)
+if bi == None:
+    print("Passou do limite, bro, fez sol!")
+else:
+    print("Caralho, mermão, toma uma raiz aproximada: {}".format(*bi))
 plt.plot(valx, color="#FF0000")
 plt.show()
