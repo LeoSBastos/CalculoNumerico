@@ -6,7 +6,7 @@ def f(x):
     return (x**2)+2
 
 def pondmed(a,b):
-    return ((a*np.absolute(f(a)))+(b*np.absolute(f(b))))/(np.absolute(f(b))+np.absolute(f(a)))
+    return ((a*np.absolute(f(b)))+(b*np.absolute(f(a))))/(np.absolute(f(b))+np.absolute(f(a)))
 
 vala = []
 valb = []
@@ -31,17 +31,17 @@ def falsaposicao(a,b,eps,it,iteracoes):
             if(f(a)<0 and f(b)>0):
                 if(f(x) < 0):
                     printar(it,a,b,x)
-                    bisseccao(x,b,eps,it+1,iteracoes)
+                    falsaposicao(x,b,eps,it+1,iteracoes)
                 else:
                     printar(it,a,b,x)
-                    bisseccao(a,x,eps,it+1,iteracoes)
+                    falsaposicao(a,x,eps,it+1,iteracoes)
             elif(f(a)>0 and f(b)<0):
                 if(f(x) > 0):
                     printar(it,a,b,x)
-                    bisseccao(x,b,eps,it+1,iteracoes)
+                    falsaposicao(x,b,eps,it+1,iteracoes)
                 else:
                     printar(it,a,b,x)
-                    bisseccao(a,x,eps,it+1,iteracoes)
+                    falsaposicao(a,x,eps,it+1,iteracoes)
             else:
                 print("meu amigo, queria dizer não, mas vai ter que usar algo que ainda não aprendi")
     else:
@@ -51,7 +51,7 @@ def falsaposicao(a,b,eps,it,iteracoes):
 
 #Exemplo da Tabela 3.1 realizado do livro da UFRGS
 a = float(0)
-b = float(3)
+b = float(30)
 fp = falsaposicao(a,b,(10**-6),0,1000)
 if fp == None:
     print("Passou do limite, bro, fez sol!")
