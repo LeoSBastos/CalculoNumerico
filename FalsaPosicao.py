@@ -56,6 +56,6 @@ fp = falsaposicao(a,b,(1e-6),0,990)
 if fp == None:
     print("Passou do limite, bro, fez sol!")
 else:
-    print("Caralho, mermão, toma uma raiz aproximada: {}".format(*bi))
+    print("Caralho, mermão, toma uma raiz aproximada: {}".format(*fp))
 plt.plot(valx, color="#FF0000")
 plt.show()
