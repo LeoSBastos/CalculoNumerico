@@ -20,7 +20,7 @@ def printar(n,a,b,x):
     valx.append(x)
 
 
-def bisseccao(a,b,eps,it,iteracoes):
+def falsaposicao(a,b,eps,it,iteracoes):
     if(it<iteracoes):
         if(b-a<eps):
             return (random.uniform(a,b))
@@ -52,7 +52,7 @@ def bisseccao(a,b,eps,it,iteracoes):
 #Exemplo da Tabela 3.1 realizado do livro da UFRGS
 a = float(0)
 b = float(3)
-bi = bisseccao(a,b,(10**-6),0,300)
+fp = falsaposicao(a,b,(10**-6),0,300)
 if bi == None:
     print("Passou do limite, bro, fez sol!")
 else:
