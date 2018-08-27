@@ -32,7 +32,7 @@ def printar(n,a,b,x):
 
 
 def bisseccao(a,b,eps,it,iteracoes):
-    if(it<iteracoes):
+    while(it<iteracoes):
         if(b-a<eps):
             return (random.uniform(a,b))
         else:
@@ -42,21 +42,24 @@ def bisseccao(a,b,eps,it,iteracoes):
             if(f(a)<0 and f(b)>0):
                 if(f(x) < 0):
                     printar(it,a,b,x)
-                    bisseccao(x,b,eps,it+1,iteracoes)
+                    a=x
+                    it=it+1
                 else:
                     printar(it,a,b,x)
-                    bisseccao(a,x,eps,it+1,iteracoes)
+                    b=x
+                    it=it+1
             elif(f(a)>0 and f(b)<0):
                 if(f(x) > 0):
                     printar(it,a,b,x)
-                    bisseccao(x,b,eps,it+1,iteracoes)
+                    b=x
+                    it=it+1
                 else:
                     printar(it,a,b,x)
-                    bisseccao(a,x,eps,it+1,iteracoes)
+                    a=x
+                    it=it+1
             else:
                 print("meu amigo, queria dizer não, mas vai ter que usar algo que ainda não aprendi")
-    else:
-        return None
+    return None
 
 
 
@@ -67,6 +70,6 @@ bi = bisseccao(a,b,(1e-6),0,300)
 if bi == None:
     print("Passou do limite, bro, fez sol!")
 else:
-    print("Caralho, mermão, toma uma raiz aproximada: {}".format(*bi))
+    print("Caralho, mermão, toma uma raiz aproximada: {}".format(bi))
 plt.plot(valx, color="#FF0000")
 plt.show()

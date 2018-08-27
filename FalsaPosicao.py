@@ -21,7 +21,7 @@ def printar(n,a,b,x):
 
 
 def falsaposicao(a,b,eps,it,iteracoes):
-    if(it<iteracoes):
+    while(it<iteracoes):
         if(b-a<eps):
             return (random.uniform(a,b))
         else:
@@ -31,31 +31,32 @@ def falsaposicao(a,b,eps,it,iteracoes):
             if(f(a)<0 and f(b)>0):
                 if(f(x) < 0):
                     printar(it,a,b,x)
-                    falsaposicao(x,b,eps,it+1,iteracoes)
+                    a=x
+                    it=it+1
                 else:
                     printar(it,a,b,x)
-                    falsaposicao(a,x,eps,it+1,iteracoes)
+                    b=x
+                    it=it+1
             elif(f(a)>0 and f(b)<0):
                 if(f(x) > 0):
                     printar(it,a,b,x)
-                    falsaposicao(x,b,eps,it+1,iteracoes)
+                    b=x
+                    it=it+1
                 else:
                     printar(it,a,b,x)
-                    falsaposicao(a,x,eps,it+1,iteracoes)
+                    a=x
+                    it=it+1
             else:
                 print("meu amigo, queria dizer não, mas vai ter que usar algo que ainda não aprendi")
-    else:
-        return None
-
-
+    return None
 
 #Exemplo da Tabela 3.1 realizado do livro da UFRGS
 a = float(0)
 b = float(30)
-fp = falsaposicao(a,b,(1e-6),0,990)
+fp = falsaposicao(a,b,1e-6,0,10000)
 if fp == None:
     print("Passou do limite, bro, fez sol!")
 else:
-    print("Caralho, mermão, toma uma raiz aproximada: {}".format(*fp))
+    print("Caralho, mermão, toma uma raiz aproximada: {}".format(fp))
 plt.plot(valx, color="#FF0000")
 plt.show()
