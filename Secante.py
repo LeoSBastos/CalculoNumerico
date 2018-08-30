@@ -6,10 +6,16 @@ def secante(a, b, max_it):
     i = 0
     x = a
     aux = b
-    while(i < max_it):
-        x = x - (f(x)*((x-aux)/f(x)-f(aux)))
-        print(i+1, x)
+    old = None
+    while(i < max_it and old != aux):
+        old = aux
+        res = aux - (f(aux)*((aux-x)/(f(aux)-f(x))))
+        print(i+1, res)
         i += 1
+        x=aux
+        aux=res
 
 
-secante(2, 3, 100)
+
+
+secante(20.0, 30.0, 100)
