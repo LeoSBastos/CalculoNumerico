@@ -7,6 +7,7 @@ def secante(a, b, max_it,err):
     x = a
     aux = b
     old = None
+<<<<<<< HEAD
     while(i < max_it):
         #if(aux-x<err):
         #   break
@@ -17,8 +18,21 @@ def secante(a, b, max_it,err):
             i += 1
             x=aux
             aux=res
+=======
+    while(i < max_it and old != aux):
+        old = aux
+        res = aux - (f(aux)*((aux-x)/(f(aux)-f(x))))
+        print(i+1, res)
+        i += 1
+        x=aux
+        aux=res
+>>>>>>> 6fe4be915a530fa7e5de0d698ccb28f8f0cba506
 
 
 
 
+<<<<<<< HEAD
 secante(20.0, 30.0, 100,1e-6)
+=======
+secante(20.0, 30.0, 100)
+>>>>>>> 6fe4be915a530fa7e5de0d698ccb28f8f0cba506
