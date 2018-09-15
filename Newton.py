@@ -1,3 +1,4 @@
+from mpmath import *
 #função
 def f(x):
     return x**2-1
@@ -12,7 +13,7 @@ def newton(val,eps,max_i):
     old = None
     while(i<max_i and old != x):
         old = x
-        x = x - f(x)/fdif(x)
+        x = x - f(x)/diff(f,x)
         print(i+1,x)
         i+=1
 #valor inicial, maximo de iterações
