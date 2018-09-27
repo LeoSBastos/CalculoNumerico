@@ -1,7 +1,6 @@
 import numpy as np
 import random
 import math
-from bigfloat import *
 from mpmath import diff
 
 def bisseccao(f,a,b,eps,iteracoes):
@@ -56,7 +55,7 @@ def newton(f,val,eps,max_i):
             x = float(x - f(x)/diff(f,x))
             i+=1
         else:
-            print("Deu ruim, derivada é 0")
+            return None
         if(abs(old-x)<eps):
             x=random.uniform(old,x)
     valores.append(old)
@@ -113,8 +112,11 @@ def secante(f, a, b, eps, max_it):
     x = a
     aux = b
     old = None
-    while(i < max_it and x != aux):    
-        res = aux - (f(aux)*((aux-x)/(f(aux)-f(x))))
+    while(i < max_it and x != aux):
+        div = (f(aux)-f(x))
+        if div == 0:
+            break
+        res = aux - (f(aux)*((aux-x)/div))
         i += 1
         x=aux
         aux=res
@@ -127,16 +129,16 @@ def secante(f, a, b, eps, max_it):
 
 def pontofixo(f,val,eps,max_i):
     i=0
-    x=val
-    old = 2
+    x = val
+    old = None
     valores = []
     while(i < max_i and old != x):
         old = x
-        x = BigFloat.exact(x) - BigFloat.exact(f(x))
+        x = x - f(x)
         i+=1
         if(abs(old-x)<eps):
             x = random.uniform(old,x)
     valores.append(old)
     valores.append(x)
-    valores.append(i)    
+    valores.append(i)
     return valores
