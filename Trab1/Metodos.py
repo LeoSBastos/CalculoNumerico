@@ -1,17 +1,26 @@
 import numpy as np
 import random
 import math
+from bigfloat import *
 from mpmath import diff
 
 def bisseccao(f,a,b,eps,iteracoes):
     it = 0
     valores = []
+    old=None
+    x=0
     while(it<iteracoes):
-        if(b-a<eps):
-            return (random.uniform(a,b))
+        if(abs(b-a)<eps):
+            x = random.uniform(b,a)
+            valores.append(old)
+            valores.append(x)
+            valores.append(it)
+            return valores
         else:
+            old = x
             x = (a+b)/2
             if(f(x) == 0):
+                valores.append(old)
                 valores.append(x)
                 valores.append(it)
                 return valores
@@ -34,8 +43,7 @@ def bisseccao(f,a,b,eps,iteracoes):
                     a=x
                     it=it+1
             else:
-                print("meu amigo, queria dizer não, mas vai ter que usar algo que ainda não aprendi")
-    return None
+                return None
 
 def newton(f,val,eps,max_i):
     valores = []
@@ -49,6 +57,9 @@ def newton(f,val,eps,max_i):
             i+=1
         else:
             print("Deu ruim, derivada é 0")
+        if(abs(old-x)<eps):
+            x=random.uniform(old,x)
+    valores.append(old)
     valores.append(x)
     valores.append(i)
     return valores
@@ -62,12 +73,20 @@ def falsaposicao(f,a0,b0,eps,iteracoes):
     valores = []
     a = a0
     b = b0
+    old = None
+    x = 0
     while(it<iteracoes):
         if(b-a<eps):
-            return (random.uniform(a0,b0))
+            x = (random.uniform(a0,b0))
+            valores.append(old)
+            valores.append(x)
+            valores.append(it)
+            return valores
         else:
+            old = x
             x = pondmed(f,a,b,a0,b0)
             if(f(x) == 0):
+                valores.append(old)
                 valores.append(x)
                 valores.append(it)
                 return valores
@@ -86,8 +105,7 @@ def falsaposicao(f,a0,b0,eps,iteracoes):
                     a=x
                     it=it+1
             else:
-                print("meu amigo, queria dizer não, mas vai ter que usar algo que ainda não aprendi")
-    return None
+                return None
 
 def secante(f, a, b, eps, max_it):
     valores = []
@@ -95,15 +113,30 @@ def secante(f, a, b, eps, max_it):
     x = a
     aux = b
     old = None
-    while(i < max_it and old != aux):
-        old = aux
+    while(i < max_it and x != aux):    
         res = aux - (f(aux)*((aux-x)/(f(aux)-f(x))))
         i += 1
         x=aux
         aux=res
+        if(abs(x-aux)<eps):
+            aux=random.uniform(x,aux)
     valores.append(x)
+    valores.append(aux)
     valores.append(i)
     return valores
 
-def calculaErro(xbarra,x):
-    return (abs(x-xbarra)/abs(x))
+def pontofixo(f,val,eps,max_i):
+    i=0
+    x=val
+    old = 2
+    valores = []
+    while(i < max_i and old != x):
+        old = x
+        x = BigFloat.exact(x) - BigFloat.exact(f(x))
+        i+=1
+        if(abs(old-x)<eps):
+            x = random.uniform(old,x)
+    valores.append(old)
+    valores.append(x)
+    valores.append(i)    
+    return valores

@@ -1,4 +1,5 @@
 {
     "python.linting.enabled": false,
-    "python.formatting.provider": "none"
+    "python.formatting.provider": "none",
+    "python.jediEnabled": false
 }
