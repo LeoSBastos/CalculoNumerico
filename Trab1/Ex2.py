@@ -3,7 +3,10 @@ from prettytable import PrettyTable
 import random
 import matplotlib.pyplot as plt
 
-valerror = []
+valerror1 = []
+valerror2 = []
+valerror3 = []
+valerrors = [valerror1,valerror2,valerror3]
 i = 20
 
 val = 2
@@ -26,7 +29,7 @@ erro=1e-6
 max_it=1000000000000
 tabela = PrettyTable(["Dado Inicial","xbarra","fi(x)","Erro","Número de Iterações"])
 
-def pontofixo(f,val,eps,max_i):
+def pontofixo(f,val,eps,max_i,valerror):
     i=0
     x = val
     old = None
@@ -46,7 +49,7 @@ def pontofixo(f,val,eps,max_i):
     return valores
 
 for i in range(3):
-    pf = pontofixo(gs[i],val,erro,max_it)
+    pf = pontofixo(gs[i],val,erro,max_it,valerrors[i])
     if(pf == None):
         tabela.add_row([val,"-",i+1,"-","-"])
     else:
@@ -54,5 +57,7 @@ for i in range(3):
 
 print(tabela)
 
-plt.plot(valerror, color="#FF0080")
+plt.plot(valerror1, color="#FF0080")
+plt.plot(valerror2, color="#808080")
+plt.plot(valerror3, color="#FF00FF")
 plt.show()
