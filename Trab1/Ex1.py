@@ -15,7 +15,7 @@ def escrever():
     # print(secante(fteste, 0, 3, 1e-6, 100))
 
     tabelas = []
-    for i in range(1,5):
+    for i in range(5):
         a = vals[i][0]
         b = vals[i][1]
         qtd = 1000000000000
@@ -44,7 +44,7 @@ def escrever():
         if(pf == None):
             tabela.add_row(["Ponto Fixo", "-","-",i+1,"-","-"])
         else:
-            tabela.add_row(["Ponto Fixo", di[0],pf[1],i+1,(abs(pf[0]-pf[1])),pf[2]])
+            tabela.add_row(["Ponto Fixo", di[1],pf[1],i+1,(abs(pf[0]-pf[1])),pf[2]])
         new = newton(func[i],b,erro,100)
         tabela.add_row(["Newton", di[1], new[1],i+1,(abs(new[1]-new[0])),new[2]])
         sec = secante(func[i],a,b,erro,100)

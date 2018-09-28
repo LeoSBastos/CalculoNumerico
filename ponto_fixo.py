@@ -32,7 +32,7 @@ x.append(x0) #valor para a lista
 
 #laço principal
 for i in range(1,N):
-    x.append(f3(x[i-1]))
+    x.append(f(x[i-1]))
     if abs(x[i]-x[i-1])<erro:
         break
     
