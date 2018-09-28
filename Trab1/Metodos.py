@@ -1,7 +1,9 @@
 import numpy as np
 import random
 import math
-from mpmath import diff
+from sympy import *
+from mpmath import *
+from decimal import *
 
 def bisseccao(f,a,b,eps,iteracoes):
     it = 0
@@ -116,7 +118,7 @@ def secante(f, a, b, eps, max_it):
         div = (f(aux)-f(x))
         if div == 0:
             break
-        res = aux - (f(aux)*((aux-x)/div))
+        res = float(aux - (f(aux)*((aux-x)/div)))
         i += 1
         x=aux
         aux=res
@@ -127,6 +129,15 @@ def secante(f, a, b, eps, max_it):
     valores.append(i)
     return valores
 
+def fixpt(f,val,eps,max_i):
+    x = []
+    x.append(val)
+    for i in range(1,max_i):
+        x.append(f(x[i-1]))
+        if abs(x[i]-x[i-1])<eps:
+            break
+    return x
+
 def pontofixo(f,val,eps,max_i):
     i=0
     x = val
@@ -134,8 +145,10 @@ def pontofixo(f,val,eps,max_i):
     valores = []
     while(i < max_i and old != x):
         old = x
-        x = x - f(x)
+        x=float(x - f(x))
         i+=1
+        if(abs(x)>1e+20):
+            return None
         if(abs(old-x)<eps):
             x = random.uniform(old,x)
     valores.append(old)
