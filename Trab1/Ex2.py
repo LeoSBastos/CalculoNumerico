@@ -1,5 +1,6 @@
 from Metodos import pontofixo
 from prettytable import PrettyTable
+from mpmath import *
 import random
 import matplotlib.pyplot as plt
 
@@ -12,8 +13,7 @@ i = 20
 val = 2
 
 def f(x):
-    return x**2-1
-
+    return  (x-1)*exp(x-2)**2 - 1
 def g1(x):
     return  (x - (f(x)/10))
 
@@ -58,6 +58,6 @@ for i in range(3):
 print(tabela)
 
 plt.plot(valerror1, color="#FF0080")
-plt.plot(valerror2, color="#808080")
+plt.plot(valerror2, color="#008080")
 plt.plot(valerror3, color="#FF00FF")
 plt.show()
