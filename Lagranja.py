@@ -1,6 +1,6 @@
 import numpy as np
 from sympy import *
-
+from functools import reduce
 x=Symbol('x')
 
 def Lagranja(x,vet):
@@ -10,13 +10,15 @@ def Lagranja(x,vet):
         for j in range(len(vet)):
             if j!=i:
                 forms.append((x-vet[j][0])/(vet[i][0]-vet[j][0]))
-        formao.append(vet[i][1]*forms[0]*forms[1])
+        formao.append(vet[i][1]*reduce(lambda x, y:x*y, forms))
     formula = 0
     for i in range(len(formao)):
         formula += formao[i]
     return formula
 
+vet=[[1,1],[2,8],[3,27]]
 
-vet=[[-2,2],[0,-2],[4,1]]
 
-print(Lagranja(x,vet))
+lagranja = Lagranja(x,vet)
+print(lagranja)
+print(simplify(Lagranja(x,vet)))
