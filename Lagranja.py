@@ -11,9 +11,7 @@ def Lagranja(x,vet):
             if j!=i:
                 forms.append((x-vet[j][0])/(vet[i][0]-vet[j][0]))
         formao.append(vet[i][1]*reduce(lambda x, y:x*y, forms))
-    formula = 0
-    for i in range(len(formao)):
-        formula += formao[i]
+    formula = reduce(lambda x,y :x+y,formao)
     return formula
 
 vet=[[1,1],[2,8],[3,27]]
@@ -21,4 +19,5 @@ vet=[[1,1],[2,8],[3,27]]
 
 lagranja = Lagranja(x,vet)
 print(lagranja)
-print(simplify(Lagranja(x,vet)))
+print(simplify(lagranja))
+print(lagranja.subs(x,10))
