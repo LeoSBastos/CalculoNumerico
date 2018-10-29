@@ -2,10 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\Polinomios de Interpolacao",
-    "\\Trab1",
     "\\Trab3",
+    "\\Trab3\\Ex1",
+    "\\Trab3\\Ex2",
     "\\Trab3\\Ex3"
   ],
-  "SelectedNode": "\\Trab3\\Ex3\\ex3.py",
+  "SelectedNode": "\\Trab3\\Ex1\\MatrizHilbert.py",
   "PreviewInSolutionExplorer": false
 }

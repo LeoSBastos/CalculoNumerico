@@ -19,8 +19,8 @@ def diferencasDivididas(vet):
     val.append(vetdelta[0])
     return val
 
-def Newtao(vet,valor):
-    val = Newtao(vet)
+def Newtao(vet):
+    val = diferencasDivididas(vet)
     funcfinal = []
     funcfinal.append(val[0])
     for i in range(1,len(vet)):
@@ -30,9 +30,9 @@ def Newtao(vet,valor):
         funcfinal.append(val[i] * reduce(lambda x, y: x * y,functemp))        
     polinomio = simplify(reduce(lambda x,y:x + y,funcfinal)) 
     print(polinomio)
-    return polinomio.subs(x,valor)
+    return polinomio
 
-def Lagranja(vet,valor):
+def Lagranja(vet):
     formao = []
     for i in range(len(vet)):
         forms = []
@@ -42,4 +42,7 @@ def Lagranja(vet,valor):
         formao.append(vet[i][1] * reduce(lambda x, y:x * y, forms))
     formula = simplify(reduce(lambda x,y :x + y,formao))
     print(formula)
-    return formula.subs(x,valor)
+    return formula
+
+def SubstituirX(poly,valor):
+    return poly.subs(x,valor)

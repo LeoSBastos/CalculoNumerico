@@ -1,22 +1,35 @@
+﻿import numpy as np
 import matplotlib.pyplot as plt
-import numpy as np
-from numpy import linalg  
-
-def teste1():
-    teste = [(10,1),(1,8)]
-    return gauss_seidel(np.matrix(teste),
-    np.matrix([[23],[26]]),np.matrix([[0],[0]]),0.00001, 100)
+from numpy import linalg
 
 
-def gauss_seidel(A,b,x0,tol,N):  
+vet = [[1,1],[2,8],[3,27]]
+
+def criarMatrizX(vet):
+    aux = []
+    for i in range(len(vet)):
+        aux.append([vet[i][0]**2,vet[i][0],1])
+    return np.matrix(aux)
+
+def criarMatrizY(vet):
+    aux = []
+    for i in range(len(vet)):
+        aux.append([vet[i][1]])
+    return np.matrix(aux)
+
+def gauss_seidel(A,b,tol,N):  
     #preliminares  
+    aux=[]
+    for i in range(len(A)):
+        aux.append([0])
+    x0=np.matrix(aux)
     A = A.astype('double')  
     b = b.astype('double')  
     x0 = x0.astype('double')  
     
     #test for graphic representation
     m=np.shape(A)[1]  
-    if m != 2:
+    if m != 3:
         raise NameError('Numero de enquações diferente de dois.') 
 
     n=np.shape(A)[0]  
@@ -80,4 +93,11 @@ def gauss_seidel(A,b,x0,tol,N):
         x0 = np.copy(x)  
     raise NameError('num. max. de iteracoes excedido.') 
 
-teste1()
+A = criarMatrizX(vet)
+b = criarMatrizY(vet)
+print(A)
+print(b)
+gauss_seidel(A, b, 0.00001, 1000000000)
+
+
+1/(i+j-1)
