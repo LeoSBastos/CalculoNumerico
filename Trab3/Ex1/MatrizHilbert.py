@@ -6,9 +6,7 @@ def MatrizHilbert(N):
 		auj = []
 		for j in range(1,N+1):
 			auj.append(1/(i+j-1))
-		auj.append(0)
-        aui.append(auj)
-
+		aui.append(auj)
 	return np.matrix(aui)
 
 print(MatrizHilbert(2))
