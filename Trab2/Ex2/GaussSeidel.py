@@ -11,7 +11,7 @@ def gauss(A, b, x):
     print(x)
     return x            
 
-def gausssidel(A,b,tol,lim):
+def gaussseidel(A,b,tol,lim):
     cont = 0
     x = [1, 1, 1]
     while(True):
@@ -25,11 +25,18 @@ def gausssidel(A,b,tol,lim):
             else:
                 tols.append(False)
         aux = np.all(tols)
-        if np.allclose(x,old) or aux or cont == lim:
+        if np.allclose(x,old):
+            return x
+        elif aux:
+            print("TOL excedido")
+            return x
+        elif cont == lim:
+            print("Iteracoes excedidas")
             return x
 
 A = np.array([[1.0, 0.0, -1.0], [-0.5, 1.0, -0.25], [1.0, -0.5, 1.0]])
 b = [0.2, -1.425, 2.0]
 
-val = gausssidel(A,b,1e-2,300)
-print(val)
+# val = gaussseidel(A,b,1e-2,300)
+# print(val)
+

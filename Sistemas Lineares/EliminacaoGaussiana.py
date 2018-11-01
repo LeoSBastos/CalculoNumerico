@@ -2,7 +2,7 @@ from sympy import *
 from functools import reduce
 import numpy as np
 
-def EliminacaoGaussiana(mat):
+def calculaXBarra(mat):
 	for i in range(min(len(mat), len(mat[0]))):
 		for r in range(i, len(mat)):
 			zero_row = mat[r][i] == 0
@@ -51,3 +51,14 @@ def transposta(mat):
 			newrow.append(mat[r][c])
 		retval.append(newrow)
 	return retval
+
+def eliminacaoLinear(vet):
+    A = criarMatrizA(vet)
+    print(A)
+    b = criarMatrizb(vet)
+    Ab = criaMatrizAB(A, b)			
+
+    calculaCoeficientes(Ab)
+
+    x = transposta(Ab)[3]
+    return x
