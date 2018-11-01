@@ -2,6 +2,18 @@ from sympy import *
 from functools import reduce
 import numpy as np
 
+def criarMatrizA(vet):
+    aux = []
+    for i in range(len(vet)):
+        aux.append([vet[i][0]**2,vet[i][0],1])
+    return aux
+
+def criarMatrizb(vet):
+    aux = []
+    for i in range(len(vet)):
+        aux.append([vet[i][1]])
+    return aux
+
 def calculaCoeficientes(mat):
 	for i in range(min(len(mat), len(mat[0]))):
 		for r in range(i, len(mat)):
@@ -52,7 +64,10 @@ def transposta(mat):
 		retval.append(newrow)
 	return retval
 
-def polinomioLinear(A,b):
+def polinomioLinear(vet):
+    A = criarMatrizA(vet)
+    print(A)
+    b = criarMatrizb(vet)
     Ab = criaMatrizAB(A, b)			
 
     calculaCoeficientes(Ab)
@@ -70,8 +85,11 @@ def polinomioLinear(A,b):
     return reduce(lambda x,y: x+y, aux)
 
 
-A = [[1,1,1],[4,2,1],[9,3,1]]
+vet = [(2012,7099557649),
+(2013,7185137526),	
+(2014,7271322821),
+(2015,7357559450),	
+(2016,7444157356),	
+(2017,7530360149)]
 
-b = [[1],[8],[27]]
-
-print(PolinomioLinear(A,b))
+print(polinomioLinear(vet))
