@@ -1,37 +1,53 @@
+from sympy import *
+from functools import reduce
 import numpy as np
 
-def gaussElimination(matrix):
-    np.asarray(matrix) #ensure the array
-    matrix = matrix.astype(float) #ensure the datatype is float
-    print("the initial matrix:")
-    print(matrix)
-    if (matrix[0,0] == 0.0):
-        raise Exception("matrix row 1 column 1 cannot be zero!")
-    n,m = matrix.shape
-    print ("row:",n,"column:",m)
-    #start the elimination phase
-    for i in range(0,n):#row
-        for j in range(i+1,n):
-            if matrix[j,i] != 0.0:
-                print("using row ",i,"as pivot and row ",j,"as target")
-                multiplier = matrix[j,i]/matrix[i,i]
-                #print matrix[i,k],matrix[k,k],multiplier 
-                #just to verbose multiplier process
-                matrix[j,i:m]=matrix[j,i:m] - multiplier*matrix[i,i:m] 
-                print(matrix)
-                
-    #start the backsubstitution phase
-    x = []
-    substractor = 0.0
-    for i in range(n-1,-1,-1): #row
-        #print "i",i #just for debugging
-        for j in range(0,n-i): #column
-            #print "j",j #just for debugging
-            if j==0:
-                substractor = 0
-            else:
-                substractor = substractor + matrix[i,m-j-1]*x[j-1]
-        x.append((matrix[i,m-1]-substractor)/matrix[i,i])
-        #print "x",x
-    return x
+def EliminacaoGaussiana(mat):
+	for i in range(min(len(mat), len(mat[0]))):
+		for r in range(i, len(mat)):
+			zero_row = mat[r][i] == 0
+			if zero_row:
+				continue
+			mat[i], mat[r] = mat[r], mat[i]
+			first_row_first_col = mat[i][i]
+			for rr in range(i + 1, len(mat)):
+				this_row_first = mat[rr][i]
+				scalarMultiple = -1 * this_row_first / first_row_first_col
+				for cc in range(i, len(mat[0])):
+					mat[rr][cc] += mat[i][cc] * scalarMultiple
+			break
+	for i in range(min(len(mat), len(mat[0])) - 1, -1, -1):
+		first_elem_col = -1
+		first_elem = -1
+		for c in range(len(mat[0])):
+			if mat[i][c] == 0:
+				continue
+			if first_elem_col == -1:
+				first_elem_col = c
+				first_elem = mat[i][c]
+			mat[i][c] /= first_elem
+		for r in range(i):
+			this_row_above = mat[r][first_elem_col]
+			scalarMultiple = -1 * this_row_above
+			for cc in range(len(mat[0])):
+				mat[r][cc] += mat[i][cc] * scalarMultiple
 
+
+
+def criaMatrizAB(A, b):
+	retval = []
+	for i in range(len(A)):
+		r = A[i]
+		newrow = r[:] + b[i]
+		retval.append(newrow)
+	return retval
+    
+
+def transposta(mat):
+	retval = []
+	for c in range(len(mat[0])):
+		newrow = []
+		for r in range(len(mat)):
+			newrow.append(mat[r][c])
+		retval.append(newrow)
+	return retval
