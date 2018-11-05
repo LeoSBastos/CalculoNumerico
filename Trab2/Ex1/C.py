@@ -11,5 +11,32 @@ xb64 = graph
 x128 = eliminacaoGaussiana(h128,0)
 xb128 = graph
 
-plt.plot(xb2,color='r')
+#H2
+plt.figure(1)
+for val in xb2:
+    for i in range(len(val)):
+        plt.plot(val[i])
+plt.title("Hilbert de Ordem 2")
 
+#H32
+plt.figure(2)
+for val in xb32:
+    for i in range(len(val)):
+        plt.plot(val[i])
+plt.title("Hilbert de Ordem 32")
+
+#H64
+plt.figure(3)
+for val in xb64:
+    for i in range(len(val)):
+        plt.plot(val[i])
+plt.title("Hilbert de Ordem 64")
+
+#H128
+plt.figure(4)
+for val in xb128:
+    for i in range(len(val)):
+        plt.plot(val[i])
+plt.title("Hilbert de Ordem 128")
+
+plt.show()

@@ -1,6 +1,7 @@
 import numpy as np
 
 def decomposicaoLU(A):
+    i = 1
     U = np.copy(A)  
     n = np.shape(U)[0]  
     L = np.eye(n)  
@@ -10,6 +11,8 @@ def decomposicaoLU(A):
             for k in np.arange(j+1,n):  
                 U[i,k] = U[i,k] - L[i,j]*U[j,k]  
             U[i,j] = 0
+            i = i + 1
+    print(i)
     matrizLU = []
     matrizLU.append(L)
     matrizLU.append(U)

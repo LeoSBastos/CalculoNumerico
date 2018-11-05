@@ -2,11 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\Polinomios de Interpolacao",
-    "\\Trab3",
-    "\\Trab3\\Ex1",
-    "\\Trab3\\Ex2",
-    "\\Trab3\\Ex3"
+    "\\Sistemas Lineares",
+    "\\Trab2",
+    "\\Trab2\\Ex1",
+    "\\Trab2\\Ex2",
+    "\\Trab2\\Ex3"
   ],
-  "SelectedNode": "\\Polinomios de Interpolacao\\gausselimination.py",
+  "SelectedNode": "\\Trab2\\Ex2\\A.py",
   "PreviewInSolutionExplorer": false
 }

@@ -3,8 +3,10 @@ from functools import reduce
 import numpy as np
 
 graph =[]
+count = 0
 
 def calculaXBarra(mat):
+    global count
     for i in range(min(len(mat), len(mat[0]))):
         for r in range(i, len(mat)):
             zero_row = mat[r][i] == 0
@@ -16,7 +18,8 @@ def calculaXBarra(mat):
             	this_row_first = mat[rr][i]
             	scalarMultiple = -1 * this_row_first / first_row_first_col
             	for cc in range(i, len(mat[0])):
-            		mat[rr][cc] += mat[i][cc] * scalarMultiple
+                    mat[rr][cc] += mat[i][cc] * scalarMultiple
+                    count += 1
             break
     graph.append(mat)
 
@@ -31,10 +34,11 @@ def calculaXBarra(mat):
             	first_elem = mat[i][c]
             mat[i][c] /= first_elem
         for r in range(i):
-        	this_row_above = mat[r][first_elem_col]
-        	scalarMultiple = -1 * this_row_above
-        	for cc in range(len(mat[0])):
-        		mat[r][cc] += mat[i][cc] * scalarMultiple
+            this_row_above = mat[r][first_elem_col]
+            scalarMultiple = -1 * this_row_above
+            for cc in range(len(mat[0])):
+                mat[r][cc] += mat[i][cc] * scalarMultiple
+                count+=1
     graph.append(mat)
 
 
@@ -64,6 +68,7 @@ def eliminacaoGaussiana(A,valb):
     Ab = criaMatrizAB(A, b)			
 
     calculaXBarra(Ab)
-
     x = transposta(Ab)[2]
     return x
+def getCount():
+    return count
