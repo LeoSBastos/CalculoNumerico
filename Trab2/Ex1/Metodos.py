@@ -49,8 +49,12 @@ def gaussseidel(A,valb,tol,lim):
             return x
 
 def calcularVetor(A):
+    cont = 0
     valfinal = [[] for x in range(len(A))]
     for val in vals:
+        cont+= 1
+        if(cont > 100):
+            return valfinal
         for j in range(len(val)):
             valfinal[j].append(val[j])
     return valfinal
