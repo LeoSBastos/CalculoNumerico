@@ -1,5 +1,5 @@
 from prettytable import PrettyTable
-from A import *
+from Matrizes import *
 
 tabela = PrettyTable(["Matriz", "Num Iteracoes", "XBarra"])
 

@@ -9,11 +9,16 @@ vals = []
 
 def gauss(A, b, x):
     L = np.tril(A)
+    
     U = A - L
-    x = np.dot(np.linalg.inv(L), b - np.dot(U, x))
+    
+    aux1 = np.linalg.inv(L)
+    aux2 = b - np.dot(U, x)
+    
+    print(aux2)
+    x = np.dot(aux1, aux2)
     vals.append(x)
-    return x            
-
+    return x     
 def gaussseidel(A,b,tol,lim):
     cont = 0
     x = [1, 1, 1]

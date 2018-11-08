@@ -5,29 +5,33 @@ import collections
 
 vals = []
 
-count = []
+count = 0
 
 def gauss(A, b, x):
     L = np.tril(A)
-    print(L)
     U = A - L
-    print(U)
-    x = np.dot(np.linalg.inv(L), b - np.dot(U, x))
+    aux1 = np.dot(U, x) 
+    aux2 = np.linalg.inv(L)
+    aux3 = b - aux1
+    x = np.dot(aux2, aux3)
     vals.append(x)
     return x            
 
 def gaussseidel(A,valb,tol,lim):
-    count.clear()
+    global count
     b = []
+
     for i in range(len(A)):
-        b.append([valb])
-    cont = 0
-    x = [1, 1, 1]
+        b.append(valb)
+    count = 0
+
+    x = []
+    for i in range(len(b)):
+        x.append(1)
     while(True):
         old = x
         x = gauss(A,b,x)
-        cont = cont + 1
-        print(cont)
+        count = count + 1
         tols = []
         for val1,val2 in zip(x,old):
             if((abs(val1 - val2)) < tol):
@@ -36,22 +40,16 @@ def gaussseidel(A,valb,tol,lim):
                 tols.append(False)
         aux = np.all(tols)
         if np.allclose(x,old):
-            count.append(cont)
             return x
         elif aux:
-            count.append(cont)
             print("TOL excedido")
             return x
         elif count == lim:
-            count.append(cont)
             print("Iteracoes excedidas")
             return x
 
-def calcularVetor():
-    valx1 = []
-    valx2 = []
-    valx3 = []
-    valfinal = [valx1,valx2,valx3]
+def calcularVetor(A):
+    valfinal = [[] for x in range(len(A))]
     for val in vals:
         for j in range(len(val)):
             valfinal[j].append(val[j])
@@ -69,9 +67,7 @@ def MatrizHilbert(N):
 		aui.append(auj)
 	return np.array(aui)
 
-A = MatrizHilbert(2)
+#A = MatrizHilbert(2)
 
-val = gaussseidel(A,0,1e-2,300)
-print(val)
-print(count)
+#val = gaussseidel(A,0,1e-2,300)
 #valfinal = calcularVetor()
