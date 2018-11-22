@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+
 // Classe para controle do canhao
-public class CannonControl : MonoBehaviour
+public class CannonControl : Heranca
 {
 	// Prefab do ponto de trajetoria (a ser definido via editor)
 	[SerializeField]
@@ -25,7 +26,9 @@ public class CannonControl : MonoBehaviour
     float dy;
     //Armazena velocidade
     float speed = 200f;
-    
+
+    WriteData wd = new WriteData();
+      
 
 	// Indicativo se a mira deve ser fixada no alvo
 	private bool m_fixedInTarget = true;
@@ -91,8 +94,12 @@ public class CannonControl : MonoBehaviour
 	void Update()
 	{
         PlayerMoviment();
-
-
+        if (wd.listaDados.Count > 300 && !(base.txtCriado))
+        {
+            wd.CriaTxt();
+            Debug.Log("teste");
+            base.txtCriado = true;
+        }       
         // A força de lançamento do projetil e igual ao vetor de distancia do
         // canhao ao ponteiro do mouse.
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -117,7 +124,7 @@ public class CannonControl : MonoBehaviour
 
 		// Calcula o angulo de lançamento
 		m_angle = (Mathf.Atan2(velY, velX) * Mathf.Rad2Deg) - 15;
-
+        
 		// Ajusta conforme o angulo em que o tiro "deve" atingir o alvo
 		time = (target.x - Mathf.Sin((90 - m_angle) * Mathf.Deg2Rad) - transform.position.x) / velX;
 		velY = gravity * (time / 2);
@@ -125,11 +132,12 @@ public class CannonControl : MonoBehaviour
 		// Calcula a velocidade e forma finais
 		Vector2 velocity = new Vector2(velX, velY);
 		m_force = velocity * mass;
-		
+
 		// Rotaciona o canhao para o angulo calculado
 		transform.rotation = Quaternion.Euler(0f, 0f, m_angle);
-        
-		showTrajectoryPoints();
+
+        EnviaDados(m_angle, m_force, m_targetObject.transform.position.x);
+        showTrajectoryPoints();
 
 		// Captura o pressionamento/liberaçao do botao do mouse
 		// (somente se nao estiver sobre o checkbox da UI)
@@ -149,7 +157,6 @@ public class CannonControl : MonoBehaviour
 	// Simula o tiro do canhao
 	void shootBullet()
 	{
-
 		// Cria o projetil e o posiciona na boca do canhao
 		GameObject bullet = (GameObject) Instantiate(m_bulletPrefab);
 		bullet.transform.position = m_cannonMouth.position;
@@ -226,8 +233,13 @@ public class CannonControl : MonoBehaviour
             transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
 
         }
-        
+    }
 
-
+    void EnviaDados(float a, Vector2 f, float x) {
+        wd.d.angulo = a;
+        wd.d.x = f.x;
+        wd.d.y = f.y;
+        wd.d.xAlvo = x;
+        wd.PopulaLista();
     }
 }

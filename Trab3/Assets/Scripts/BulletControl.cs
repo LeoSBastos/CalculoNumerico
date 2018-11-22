@@ -7,7 +7,7 @@ using UnityEngine.UI;
 // Classe para controle do projetil (bala de canhao)
 // A fisica do projetil fica a cargo da Unity, pelo uso
 // do componente Rigidbody 2D.
-public class BulletControl : MonoBehaviour
+public class BulletControl : Heranca
 {
     // Transform com o limite vertical para os projeteis
     // (obtained by its name)
@@ -46,6 +46,7 @@ public class BulletControl : MonoBehaviour
         coli = other;
         explode();
         other.transform.position = new Vector3(Random.Range(-7, 8), other.transform.position.y, other.transform.position.z);
+        base.txtCriado = false;
     }
 
     // Anima a explosao

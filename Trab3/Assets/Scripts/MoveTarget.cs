@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveTarget : MonoBehaviour {
+public class MoveTarget : Heranca {
 
     public GameObject target;
 	// Use this for initialization
@@ -14,6 +14,7 @@ public class MoveTarget : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space)) {
             target.transform.position = new Vector3(Random.Range(-7, 8), target.transform.position.y, target.transform.position.z);
+            base.txtCriado = false;
         }
 	}
 }
