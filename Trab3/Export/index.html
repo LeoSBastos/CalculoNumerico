@@ -1,23 +1,68 @@
 <!DOCTYPE html>
 <html>
+<!DOCTYPE html>
+<html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Pipa Plot</title>
-	<link rel="stylesheet" href="deps/pipa-plot.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="css/mystyle.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
-	<div id="plot"></div>
-	<div id="loader"></div>
-	<script src="dataset.js"></script>
-	<script src="deps/plotly.min.js"></script>
-	<script src="deps/math.min.js"></script>
-	<script src="deps/axios.min.js"></script>
-	<script src="deps/pipa-plot.js"></script>
-	<script src="plot.js"></script>
+
+    <nav class="nav-extended indigo">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo center">Calculo de Tragetória</a>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent tabs-fixed-width">
+                <li class="tab"><a href="#graphics3d">3D</a></li>
+                <li class="tab"><a href="#graphics2d">2D</a></li>
+                <li class="tab"><a href="#simulador">Simulador</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <div id="graphics3d" class="col s12"><iframe src="plot3d.html" frameborder="0"></iframe></div>
+    <div id="graphics2d" class="col s12"><iframe src="plot2d.html" frameborder="0"></iframe></div>
+    <footer class="page-footer indigo">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Rodapé</h5>
+                    <p class="grey-text text-lighten-4">Projeto executado para a matéria de Calculo Numérico, com o intuito
+                        de simular a tragetoria de um míssel teleguiado com base na posição do alvo utilizando derivadas,
+                        equações diferenciais e métodos iterativos.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Github dos integrantes</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/LouisRiverstone/">Luiz Gustavo</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/LeoSBastos/">Leonardo Bastos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright footer-color">
+            <div class="container">
+                © 2018 Calculo Numerico - IFB Campus Taguatinga, Under BSD-3 Licence, Cópia não comédia!
+                <a class="right" href="https://github.com/LouisRiverstone/CalculoNumerico">Github da Matéria</a>
+            </div>
+        </div>
+    </footer>
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="deps/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="deps/materialize.min.js"></script>
+    <script src="js/index.js"></script>
+
+
 </body>
 
 </html>

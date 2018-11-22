@@ -1,0 +1,11 @@
+iframe{
+    width: 100vw;
+    height: 100vh;
+}
+
+.indigo{
+    background-color: #6a00ff !important;
+}
+.footer-color{
+    background-color: #5500CC !important;
+}
