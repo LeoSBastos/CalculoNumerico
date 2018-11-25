@@ -135,8 +135,9 @@ public class CannonControl : Heranca
 
 		// Rotaciona o canhao para o angulo calculado
 		transform.rotation = Quaternion.Euler(0f, 0f, m_angle);
-
-        EnviaDados(m_angle, m_force, m_targetObject.transform.position.x);
+        
+        //Envia dados
+        //EnviaDados(m_angle, m_force, m_targetObject.transform.position.x);
         showTrajectoryPoints();
 
 		// Captura o pressionamento/liberaçao do botao do mouse
@@ -198,10 +199,10 @@ public class CannonControl : Heranca
 		    dx = velocity.magnitude * time * Mathf.Cos(angle * Mathf.Deg2Rad);
 			dy = velocity.magnitude * time * Mathf.Sin(angle * Mathf.Deg2Rad) - (Physics2D.gravity.magnitude * time * time / 2.0f);
 
-            Text uiDX = GameObject.Find("/Canvas/dx").GetComponent<Text>();
-            uiDX.text = dx.ToString();
-            Text uiDY = GameObject.Find("/Canvas/dy").GetComponent<Text>();
-            uiDY.text = dy.ToString();
+            //Text uiDX = GameObject.Find("/Canvas/dx").GetComponent<Text>();
+            //uiDX.text = dx.ToString();
+            //Text uiDY = GameObject.Find("/Canvas/dy").GetComponent<Text>();
+            //uiDY.text = dy.ToString();
 
             currentPos = new Vector3(m_cannonMouth.position.x + dx , m_cannonMouth.position.y + dy ,2);
 			time += step;

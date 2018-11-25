@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 
 
@@ -14,16 +15,21 @@ public class BulletControl : Heranca
     private Transform m_verticalLimit;
     private Collider2D coll;
     private Collision2D coli;
+    private Rigidbody2D rb;
+
     void Start()
     {
+        listaProjetil.Add(transform.position);
         GameObject obj = GameObject.Find("limit");
         if (!obj)
             throw new UnityException("A instancia do objeto empty chamado 'limit' nao foi encontrada!");
         m_verticalLimit = obj.transform;
+        rb = GetComponent<Rigidbody2D>();
+        listaProjetilPontos.Add(transform.position);
     }
 
     // Atualizaçao quadro-a-quadro
-    void Update()
+    void FixedUpdate()
     {
         // Checa se o projetil atingiu o "chao" (dado pelo posiçao vertical do
         // objeto vazio chamado 'limit'). Se atingiu, destroi o projetil.
@@ -31,6 +37,15 @@ public class BulletControl : Heranca
         {
             explode();
         }
+
+        listaProjetil.Add(transform.position);
+
+        if (FastApproximately(rb.velocity.y, float.Parse(0.0.ToString()) , float.Parse(0.1.ToString())))
+        {
+            listaProjetil.Add(transform.position);
+            listaProjetilPontos.Add(transform.position);
+        }
+
     }
 
     // Captura a colisao com outra bala (via um collider)
@@ -46,6 +61,9 @@ public class BulletControl : Heranca
         coli = other;
         explode();
         other.transform.position = new Vector3(Random.Range(-7, 8), other.transform.position.y, other.transform.position.z);
+        listaProjetil.Add(transform.position);
+        listaProjetilPontos.Add(transform.position);
+        //this.WriteProjectile();
         base.txtCriado = false;
     }
 
@@ -82,4 +100,8 @@ public class BulletControl : Heranca
         Destroy(this);
     }
 
+    public static bool FastApproximately(float a, float b, float threshold)
+    {
+        return ((a - b) < 0 ? ((a - b) * -1) : (a - b)) <= threshold;
+    }
 }
